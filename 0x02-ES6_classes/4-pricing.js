@@ -45,4 +45,3 @@ export default class Pricing {
     return amount * conversionRate;
   }
 }
-

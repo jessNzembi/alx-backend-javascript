@@ -13,7 +13,7 @@ function countStudents(path) {
         const lines = data.trim().split('\n');
         const headers = lines.shift().split(',');
 
-        lines.forEach(line => {
+        lines.forEach((line) => {
           const values = line.split(',');
           if (values.length === headers.length) {
             const student = {};
@@ -29,7 +29,7 @@ function countStudents(path) {
 
         // Group students by field
         const studentsByField = {};
-        students.forEach(student => {
+        students.forEach((student) => {
           if (!studentsByField[student.field]) {
             studentsByField[student.field] = [];
           }
@@ -39,9 +39,11 @@ function countStudents(path) {
         // Log the results
         console.log(`Number of students: ${totalStudents}`);
         for (const field in studentsByField) {
-          const count = studentsByField[field].length;
-          const list = studentsByField[field].join(', ');
-          console.log(`Number of students in ${field}: ${count}. List: ${list}`);
+          if (Object.prototype.hasOwnProperty.call(studentsByField, field)) {
+            const count = studentsByField[field].length;
+            const list = studentsByField[field].join(', ');
+            console.log(`Number of students in ${field}: ${count}. List: ${list}`);
+          }
         }
 
         // Resolve the Promise with the results
